@@ -1,0 +1,89 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/ABeeZee.ttf",
+      "sha1": "3228dce6045041ccde6ce7a12ebbcc52bbc257bd"
+    },
+    {
+      "path": "src/assets/fonts/Aclonica.ttf",
+      "sha1": "4c9d87374ecbee3c959fc84adb45e4b9eef32d45"
+    },
+    {
+      "path": "src/assets/fonts/Acme.ttf",
+      "sha1": "8697187664d6dd8d3d058a590da32c7e19158413"
+    },
+    {
+      "path": "src/assets/fonts/Alata.ttf",
+      "sha1": "05f7d2017cc9baf92e8aaf8d3ab77f9ba2911af2"
+    },
+    {
+      "path": "src/assets/fonts/Alatsi.ttf",
+      "sha1": "87259f18f5d0532a98365432a99a53bb0a82f8d5"
+    },
+    {
+      "path": "src/assets/fonts/AlfaSlabOne.ttf",
+      "sha1": "3379279f774fdb42b7e4bb027efb64337d791f1c"
+    },
+    {
+      "path": "src/assets/fonts/Alike.ttf",
+      "sha1": "1dfc70a1d83f7b45373e34c6014282656daec0ed"
+    },
+    {
+      "path": "src/assets/fonts/Asap.ttf",
+      "sha1": "0924d0f7473b932b99d00bd04c76c2fd4d5cd763"
+    },
+    {
+      "path": "src/assets/fonts/Audiowide.ttf",
+      "sha1": "651503b7a0a89f49f78f14d04c62f811853573cd"
+    },
+    {
+      "path": "src/assets/fonts/Bevan.ttf",
+      "sha1": "288cfb3504c5723ef0e50aadd9e42d939738b388"
+    },
+    {
+      "path": "src/assets/fonts/Boogaloo.ttf",
+      "sha1": "db3eaf8e7f3d28ca51aadb9d74f149623a49c440"
+    },
+    {
+      "path": "src/assets/fonts/Dekko.ttf",
+      "sha1": "0cd917ce88b19ebe355029d9e934c1830d0dec3a"
+    },
+    {
+      "path": "src/assets/fonts/DoppioOne.ttf",
+      "sha1": "48f204d90a17fda3a94aa4c82bc303232472f1a8"
+    },
+    {
+      "path": "src/assets/fonts/InriaSans.ttf",
+      "sha1": "296ff7429ddf34cf155d05bbf9855012e94e8e02"
+    },
+    {
+      "path": "src/assets/fonts/Lalezar.ttf",
+      "sha1": "3208f0656811880a6d20dff1edab27beb55ffde9"
+    },
+    {
+      "path": "src/assets/fonts/Megrim.ttf",
+      "sha1": "9a3d3ab69e86cb7db3dc1751cbd063f2bd9fb0c1"
+    },
+    {
+      "path": "src/assets/fonts/Ranga_Bold.ttf",
+      "sha1": "a8fb091ad1ae3b8dd055664ce7a067681603e45c"
+    },
+    {
+      "path": "src/assets/fonts/Ranga_Regular.ttf",
+      "sha1": "1b9814433210d4f5c9d8c0c967330526581644ca"
+    },
+    {
+      "path": "src/assets/fonts/SixCaps.ttf",
+      "sha1": "770fc7f24db739b3e7163ad7ebbe6ea037939761"
+    },
+    {
+      "path": "src/assets/fonts/SongMyung.ttf",
+      "sha1": "942912da3691cfd360c9ce874c72af0ecebf5c5b"
+    },
+    {
+      "path": "src/assets/fonts/ZenDots.ttf",
+      "sha1": "77a272f37fd2c260477469b6fe8fa5c5dea890e9"
+    }
+  ]
+}
