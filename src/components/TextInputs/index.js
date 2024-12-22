@@ -2,7 +2,9 @@ import {Text, View, Dimensions, TextInput} from 'react-native';
 import React, {useState} from 'react';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+import {user, visible, hidden} from './../../assets/icons/index';
 import styles from './styles';
+
 const TextInputs = props => {
   const [isFocused, setIsFocused] = useState(false);
   const {name, placeholder, value} = props;

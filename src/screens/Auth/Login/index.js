@@ -17,6 +17,7 @@ import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Logo2} from './../../../assets/images/index';
 import styles from './styles';
+import {RouterNames} from '../../../config';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -32,13 +33,25 @@ const Login = () => {
       return;
     }
     try {
-      await auth().signInWithEmailAndPassword(email, password);
-      console.log('Giriş başarılı!');
-      if (isChecked) {
-        await AsyncStorage.setItem('user_token', 'logged_in');
-      }
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+      const userId = userCredential.user.uid; // Kullanıcının benzersiz UID'sini al
 
-      navigation.replace('Drawer');
+      console.log('Giriş başarılı!');
+
+      // Moderatör UID'sini kontrol et
+      if (userId === 'uQKwbXu4SJYJRRCk5FrB4N8FF3T2') {
+        console.log('Moderatör girişi yapıldı.');
+        navigation.replace(RouterNames.MODERATOR_DASHBOARD); // Moderatör sayfasına yönlendirme
+      } else {
+        console.log('Normal kullanıcı girişi yapıldı.');
+        if (isChecked) {
+          await AsyncStorage.setItem('user_token', 'logged_in');
+        }
+        navigation.replace('Drawer'); // Normal kullanıcı sayfasına yönlendirme
+      }
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         Alert.alert('Hata', 'Kullanıcı bulunamadı.');

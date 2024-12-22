@@ -24,4 +24,19 @@ export default styles = StyleSheet.create({
     borderColor: '#B63E39',
     borderWidth: windowWidth * 0.005,
   },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconContainer: {
+    position: 'absolute',
+    right: windowWidth * 0.03, // Sağ tarafa yerleştirme
+    height: '100%',
+    justifyContent: 'center',
+  },
+  icon: {
+    width: 20, // İkonun boyutu
+    height: 20,
+    resizeMode: 'contain',
+  },
 });

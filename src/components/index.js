@@ -11,7 +11,9 @@ import Header from './Header';
 import FlatListHome from './FlatListHome';
 import HomeNews from './HomeNews';
 import DrawerContent from './DrawerContent';
+import Newspaper from './Newspaper';
 export {
+  Newspaper,
   DrawerContent,
   HomeNews,
   FlatListHome,

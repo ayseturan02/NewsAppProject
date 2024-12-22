@@ -9,6 +9,7 @@ import {
   Category,
   HomePage,
   CreateNews,
+  ModeratorDashboard,
 } from './../screens/index';
 import BottomNavigation from './BottomNavigation';
 import DrawerNavigation from './DrawerNavigation';
@@ -66,6 +67,13 @@ function Root() {
       <Stack.Screen
         name={RouterNames.SPLASH}
         component={Splash}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={RouterNames.MODERATOR_DASHBOARD}
+        component={ModeratorDashboard}
         options={{
           headerShown: false,
         }}

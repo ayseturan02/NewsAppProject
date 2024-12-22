@@ -8,9 +8,10 @@ import Login from './Auth/Login';
 import Register from './Auth/Register';
 import CreateNews from './CreateNews';
 import Category from './Category';
-
+import ModeratorDashboard from './ModeratorDashboard';
 
 export {
+  ModeratorDashboard,
   Category,
   CreateNews,
   Splash,

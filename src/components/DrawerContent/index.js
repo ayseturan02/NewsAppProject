@@ -9,6 +9,7 @@ import {
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import styles from './styles';
+import {power} from './../../assets/icons/index';
 import {Logo2} from './../../assets/images/index';
 const DrawerContent = props => {
   const navigation = useNavigation();
@@ -55,12 +56,27 @@ const DrawerContent = props => {
           justifyContent: 'flex-end',
           paddingBottom: windowHeight * 0.02,
         }}>
-        <View style={{marginTop: windowHeight * 0.03}}>
+        <View
+          style={{
+            marginTop: windowHeight * 0.03,
+            flexDirection: 'row',
+            left: windowWidth * 0.02,
+            alignItems: 'center',
+          }}>
+          <Image
+            source={power}
+            style={{
+              width: windowWidth * 0.05,
+              height: windowWidth * 0.05,
+              tintColor: '#B53D38',
+              marginRight: windowWidth * 0.04,
+            }}
+            resizeMode="contain"
+          />
           <Text
             style={{
               fontSize: windowWidth * 0.034,
               fontFamily: 'Bevan',
-              marginLeft: windowWidth * 0.05,
               color: '#B53D38',
               padding: windowWidth * 0.02,
             }}

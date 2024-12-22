@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {
+  Animated,
   Image,
   SafeAreaView,
   Text,
@@ -14,6 +15,7 @@ import {Logo2} from '../../assets/images/index';
 const Splash = () => {
   const navigation = useNavigation();
   const timerRef = useRef(null);
+  const rotation = useRef(new Animated.Value(10)).current;
 
   const checkUserStatus = async () => {
     try {
@@ -40,12 +42,25 @@ const Splash = () => {
     timerRef.current = setTimeout(() => {
       navigateToHome();
     }, 30000);
+
+    // Animasyon başlatma
+    Animated.timing(rotation, {
+      toValue: -20,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
     };
   }, []);
+
+  const rotateInterpolate = rotation.interpolate({
+    inputRange: [-20, 10],
+    outputRange: ['-20deg', '10deg'],
+  });
 
   return (
     <TouchableWithoutFeedback onPress={navigateToHome}>
@@ -60,7 +75,10 @@ const Splash = () => {
             </View>
           </View>
           <View style={styles.image_position}>
-            <Image source={Logo2} style={styles.image} />
+            <Animated.Image
+              source={Logo2}
+              style={[styles.image, {transform: [{rotate: rotateInterpolate}]}]}
+            />
           </View>
         </View>
       </SafeAreaView>

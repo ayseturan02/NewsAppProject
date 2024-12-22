@@ -10,4 +10,5 @@ export default RouterNames = {
   LIVE_CHAT: 'LiveChat',
   CREATE_NEWS: 'CreateNews',
   CATEGORY: 'Category',
+  MODERATOR_DASHBOARD: 'ModeratorDashboard',
 };

@@ -18,16 +18,12 @@ import styles from './styles';
 
 const categories = [
   {id: 1, name: 'Gündem'},
-  {id: 2, name: 'Ekonomi'},
+  {id: 2, name: 'Dünya-Ekonomi'},
   {id: 3, name: 'Teknoloji'},
-  {id: 4, name: 'Sağlık'},
-  {id: 5, name: 'Spor'},
-  {id: 6, name: 'Siyaset'},
-  {id: 7, name: 'Bilim'},
-  {id: 8, name: 'Dünya'},
-  {id: 9, name: 'Çevre'},
-  {id: 10, name: 'Eğitim'},
-  {id: 11, name: 'Diğer'},
+  {id: 4, name: 'Sağlık-Spor'},
+  {id: 5, name: 'Siyaset'},
+  {id: 6, name: 'Bilim-Eğitim'},
+  {id: 7, name: 'Diğer'},
 ];
 
 const CreateNews = ({navigation}) => {
