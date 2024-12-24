@@ -4,7 +4,8 @@ const get = urlOptions => {
   return fetch(BaseUrl + urlOptions, {
     headers: {
       'content-type': 'application/json',
-      authorization: 'apikey 0JVCGfN0Z8Ukvf0joVrzFs:2nItYdjnx9pHIrZbKglgtF',
+
+      authorization: 'apikey 3LClSZgQMygoikmiodmpRN:21',
     },
   })
     .then(response => {
@@ -23,7 +24,7 @@ const post = (urlOption, body) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      authorization: 'apikey 0JVCGfN0Z8Ukvf0joVrzFs:2nItYdjnx9pHIrZbKglgtF',
+      authorization: 'apikey 3LClSZgQMygoikmiodmpRN:21',
     },
     body: JSON.stringify(body),
   })

@@ -29,7 +29,7 @@ const NewsPage = () => {
               // 'source-name': 'herald-sun', // Belirli bir gazete ismi (isteğe bağlı)
             },
             headers: {
-              'x-api-key': '7e4e8faac1b1457da3d2dd6502d33', // API anahtarınızı buraya ekleyin
+              'x-api-key': '7e4e8faac', // API anahtarınızı buraya ekleyin
             },
           },
         );
