@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {
   Animated,
-  Image,
   SafeAreaView,
   Text,
   TouchableWithoutFeedback,
@@ -14,56 +13,51 @@ import {Logo2} from '../../assets/images/index';
 
 const Splash = () => {
   const navigation = useNavigation();
-  const timerRef = useRef(null);
-  const rotation = useRef(new Animated.Value(10)).current;
-
+  const rotation = useRef(new Animated.Value(0)).current;
   const checkUserStatus = async () => {
     try {
       const isLoggedIn = await AsyncStorage.getItem('user_token');
       if (isLoggedIn) {
         navigation.replace('Drawer');
       } else {
-        navigation.replace('Register');
+        navigation.replace('Login');
       }
     } catch (error) {
       console.error('Error checking user status:', error);
-      navigation.replace('Register');
+      navigation.replace('Login');
     }
-  };
-
-  const navigateToHome = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-    checkUserStatus();
   };
 
   useEffect(() => {
-    timerRef.current = setTimeout(() => {
-      navigateToHome();
-    }, 30000);
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(rotation, {
+          toValue: 1,
+          duration: 1500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(rotation, {
+          toValue: 0,
+          duration: 1500,
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
 
-    // Animasyon başlatma
-    Animated.timing(rotation, {
-      toValue: -20,
-      duration: 3000,
-      useNativeDriver: true,
-    }).start();
+    const timer = setTimeout(() => {
+      checkUserStatus();
+    }, 3000);
 
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   const rotateInterpolate = rotation.interpolate({
-    inputRange: [-20, 10],
-    outputRange: ['-20deg', '10deg'],
+    inputRange: [0, 1],
+    outputRange: ['-10deg', '10deg'],
   });
 
   return (
-    <TouchableWithoutFeedback onPress={navigateToHome}>
+    <TouchableWithoutFeedback onPress={checkUserStatus}>
       <SafeAreaView style={styles.container}>
         <View style={styles.position}>
           <View>
@@ -71,7 +65,7 @@ const Splash = () => {
               <Text style={styles.text_news}>NEWS</Text>
             </View>
             <View style={styles.text_position1}>
-              <Text style={styles.text}>form the world</Text>
+              <Text style={styles.text}>from the world</Text>
             </View>
           </View>
           <View style={styles.image_position}>

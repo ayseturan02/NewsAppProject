@@ -6,20 +6,38 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import auth from '@react-native-firebase/auth'; // Firebase auth'u ekle
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import styles from './styles';
 import {power} from './../../assets/icons/index';
 import {Logo2} from './../../assets/images/index';
+
 const DrawerContent = props => {
   const navigation = useNavigation();
 
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('userToken');
+      const currentUser = auth().currentUser;
+      if (currentUser) {
+        await auth().signOut();
+        console.log('Firebase oturumu kapatıldı.');
+      } else {
+        console.log('Zaten oturum açmış bir kullanıcı yok.');
+      }
+
+      await AsyncStorage.removeItem('user_token');
+      console.log('Yerel token temizlendi.');
+
       navigation.replace('Login');
     } catch (error) {
       console.error('Çıkış işlemi sırasında hata:', error);
+      Alert.alert(
+        'Hata',
+        'Çıkış işlemi sırasında bir sorun oluştu. Lütfen tekrar deneyin.',
+        [{text: 'Tamam'}],
+      );
     }
   };
 

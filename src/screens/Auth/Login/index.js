@@ -1,6 +1,5 @@
 import {
   SafeAreaView,
-  StyleSheet,
   Text,
   Image,
   View,
@@ -37,20 +36,18 @@ const Login = () => {
         email,
         password,
       );
-      const userId = userCredential.user.uid; // Kullanıcının benzersiz UID'sini al
+      const userId = userCredential.user.uid;
 
       console.log('Giriş başarılı!');
-
-      // Moderatör UID'sini kontrol et
-      if (userId === 'uQKwbXu4SJYJRRCk5FrB4N8FF3T2') {
+      if (userId === 'uSqIjVGiA7UXOLScINS2nBeinb33') {
         console.log('Moderatör girişi yapıldı.');
-        navigation.replace(RouterNames.MODERATOR_DASHBOARD); // Moderatör sayfasına yönlendirme
+        navigation.replace(RouterNames.MODERATOR_DASHBOARD);
       } else {
         console.log('Normal kullanıcı girişi yapıldı.');
         if (isChecked) {
           await AsyncStorage.setItem('user_token', 'logged_in');
         }
-        navigation.replace('Drawer'); // Normal kullanıcı sayfasına yönlendirme
+        navigation.replace('Drawer');
       }
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
@@ -73,9 +70,9 @@ const Login = () => {
         <ScrollView
           contentContainerStyle={{flexGrow: 1}}
           keyboardShouldPersistTaps="handled">
-          <View style={{alignItems: 'center', marginTop: windowHeight * 0.07}}>
+          <View style={{alignItems: 'center', marginTop: windowHeight * 0.05}}>
             <Image source={Logo2} style={styles.image} />
-            <View style={{marginTop: windowHeight * 0.07}}>
+            <View style={{marginTop: windowHeight * 0.03}}>
               <Text style={styles.text}>LOGIN</Text>
             </View>
           </View>

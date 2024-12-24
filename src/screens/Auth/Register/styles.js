@@ -19,11 +19,10 @@ export default styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     alignItems: 'center',
-    paddingVertical: windowHeight * 0.02,
   },
   headerContainer: {
     alignItems: 'center',
-    marginTop: windowHeight * 0.07,
+    marginTop: windowHeight * 0.03,
   },
   headerText: {
     fontSize: windowWidth * 0.26,
