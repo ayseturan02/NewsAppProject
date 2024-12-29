@@ -16,7 +16,7 @@ import {TextInputs, Buttons} from './../../../components/index';
 import {RouterNames} from '../../../config';
 import {Logo2} from './../../../assets/images/index';
 import styles from './styles';
-
+import firestore from '@react-native-firebase/firestore';
 const windowHeight = Dimensions.get('window').height;
 
 const Register = () => {
@@ -32,6 +32,18 @@ const Register = () => {
     }
 
     try {
+      // Kullanıcı adının eşsiz olup olmadığını kontrol et
+      const usernameSnapshot = await firestore()
+        .collection('users')
+        .where('username', '==', username)
+        .get();
+
+      if (!usernameSnapshot.empty) {
+        Alert.alert('Hata', 'Bu kullanıcı adı zaten kullanılıyor.');
+        return;
+      }
+
+      // Firebase Authentication ile kullanıcı oluştur
       const userCredential = await auth().createUserWithEmailAndPassword(
         email,
         password,
@@ -40,6 +52,13 @@ const Register = () => {
       // Kullanıcı profiline kullanıcı adını ekleme
       await userCredential.user.updateProfile({
         displayName: username,
+      });
+
+      // Firestore'a kullanıcı bilgilerini kaydet
+      await firestore().collection('users').doc(userCredential.user.uid).set({
+        username,
+        email,
+        createdAt: firestore.FieldValue.serverTimestamp(),
       });
 
       Alert.alert('Başarılı', 'Kayıt işlemi tamamlandı!');
@@ -61,7 +80,6 @@ const Register = () => {
       }
     }
   };
-
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>

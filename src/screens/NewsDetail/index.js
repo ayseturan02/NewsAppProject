@@ -10,8 +10,14 @@ import {
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import styles from './styles';
-import {ayse, world} from './../../assets/images/index';
 import {Back} from './../../components/index';
+const getUserAvatarColor = username => {
+  const colors = ['B53D38', '9E2A2F', 'A34F39', '8B2F2B', 'C14A4A'];
+  const hash = username
+    .split('')
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return colors[hash % colors.length];
+};
 const StyledText = ({text, firstLetterSize, textSize, style}) => {
   if (!text) {
     return null;
@@ -27,28 +33,48 @@ const StyledText = ({text, firstLetterSize, textSize, style}) => {
     </Text>
   );
 };
+
 const formatDate = timestamp => {
   if (timestamp && typeof timestamp.toDate === 'function') {
     return timestamp.toDate().toLocaleString();
   }
   return 'No Date Provided';
 };
+
+const generateProfilePhoto = name => {
+  const avatarColor = getUserAvatarColor(name);
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(
+    name || 'Kullanıcı',
+  )}&size=256&background=${avatarColor}&color=ffffff`;
+};
+
 const NewsDetail = ({route}) => {
   const {dish} = route.params;
-  const longText = {_html: dish.content};
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
       <ScrollView>
-        {dish.photo && (
+        {dish.photo ? (
           <Image source={{uri: dish.photo}} style={styles.image} />
+        ) : (
+          <View style={{top: windowHeight * -0.06}} />
         )}
         <Back />
         <View style={styles.position}>
           <View style={{marginLeft: windowWidth * 0.02}}>
-            <Image source={ayse} style={styles.photo} />
+            {dish.AuthorPhoto ? (
+              <Image source={{uri: dish.AuthorPhoto}} style={styles.photo} />
+            ) : (
+              <Image
+                source={{uri: generateProfilePhoto(dish.AuthorName)}}
+                style={styles.photo}
+              />
+            )}
           </View>
           <View style={styles.user_name_position}>
-            <Text style={styles.user_name}>{dish.AuthorName}</Text>
+            <Text style={styles.user_name}>
+              {dish.AuthorName || 'Anonim Kullanıcı'}
+            </Text>
           </View>
         </View>
         <View style={styles.date}>
@@ -57,7 +83,11 @@ const NewsDetail = ({route}) => {
             <Text style={styles.title}>{dish.title}</Text>
           </View>
         </View>
-        <View style={styles.content}>
+        <View
+          style={[
+            styles.content,
+            {alignItems: dish.photo ? 'flex-start' : 'flex-start'},
+          ]}>
           <StyledText
             text={dish?.content || 'No content available'}
             firstLetterSize={windowWidth * 0.1}

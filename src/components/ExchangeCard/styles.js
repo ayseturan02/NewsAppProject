@@ -13,20 +13,20 @@ export default styles = StyleSheet.create({
   image_position: {marginTop: windowHeight * 0.01},
   view: {
     marginRight: windowWidth * 0.02,
-    marginTop: windowHeight * 0.005,
+    marginTop: windowHeight * 0.007,
   },
   image: {
-    height: windowWidth * 0.04,
-    width: windowWidth * 0.05,
+    height: windowWidth * 0.034,
+    width: windowWidth * 0.045,
   },
 
   name: {
-    fontSize: windowWidth * 0.04,
+    fontSize: windowWidth * 0.038,
     fontFamily: 'Alata',
     color: '#363535',
   },
   rate: {
-    fontSize: windowWidth * 0.04,
+    fontSize: windowWidth * 0.038,
     fontFamily: 'Alata',
     color: '#363535',
   },

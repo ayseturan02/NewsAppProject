@@ -36,7 +36,7 @@ const DrawerNavigation = () => {
         headerShown: false,
         drawerActiveTintColor: 'white',
         drawerInactiveTintColor: 'black',
-        drawerActiveBackgroundColor: '#B63E39',
+        drawerActiveBackgroundColor: '#B4B2B2FF',
         drawerType: 'back',
         drawerItemStyle: {
           borderRadius: 0,

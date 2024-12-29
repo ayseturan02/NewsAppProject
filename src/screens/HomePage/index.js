@@ -28,7 +28,7 @@ const HomePage = () => {
         <View style={{flexDirection: 'row', marginTop: windowHeight * 0.03}}>
           {/*  <ExchangeCard />  */}
         </View>
-        {/*<Newspaper /> */}
+        {/*  <Newspaper /> */}
       </ScrollView>
     </SafeAreaView>
   );

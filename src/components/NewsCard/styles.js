@@ -3,17 +3,32 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 export default styles = StyleSheet.create({
   position: {
-    marginTop: windowWidth * 0.02,
+    marginTop: windowHeight * 0.03,
   },
   one: {
     height: windowWidth * 0.2,
     width: windowWidth * 0.2,
     backgroundColor: 'black',
   },
+  scroll_view: {
+    width: windowWidth * 1.5,
+    height: windowWidth * 0.3,
+    backgroundColor: 'white',
+    borderRadius: windowWidth * 0.01,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   container: {
     height: windowWidth * 0.3,
     width: windowWidth * 1.5,
     flexDirection: 'row',
+    marginTop: windowHeight * 0.02,
   },
   text_view: {
     width: windowWidth * 0.9,

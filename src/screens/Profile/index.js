@@ -6,22 +6,33 @@ import {
   Image,
   Dimensions,
   TouchableWithoutFeedback,
+  ScrollView,  // ScrollView'ı ekliyoruz
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 import {launchImageLibrary} from 'react-native-image-picker';
 import userImage from './../../assets/images/user.png';
 import Modals from './../../components/Modals';
 import styles from './styles';
+import {NewsCard, Plus} from '../../components';
+
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const Profile = () => {
   const [username, setUsername] = useState('');
   const [profileImage, setProfileImage] = useState(userImage);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
+
+  // Kullanıcıya özel renk seçici
+  const getUserAvatarColor = username => {
+    const colors = ['B53D38', '9E2A2F', 'A34F39', '8B2F2B', 'C14A4A'];
+    const hash = username
+      .split('')
+      .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return colors[hash % colors.length];
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -32,8 +43,18 @@ const Profile = () => {
           .collection('users')
           .doc(user.uid)
           .get();
+
         if (userDoc.exists && userDoc.data().profileImage) {
           setProfileImage({uri: userDoc.data().profileImage});
+        } else {
+          const avatarColor = getUserAvatarColor(
+            user.displayName || 'Kullanıcı',
+          );
+          const generatedPhoto = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+            user.displayName || 'Kullanıcı',
+          )}&size=256&background=${avatarColor}&color=ffffff`;
+
+          setProfileImage({uri: generatedPhoto});
         }
       }
     };
@@ -80,7 +101,12 @@ const Profile = () => {
         .doc(auth().currentUser.uid)
         .set({profileImage: ''}, {merge: true});
 
-      setProfileImage(userImage);
+      const avatarColor = getUserAvatarColor(username);
+      const generatedPhoto = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+        username,
+      )}&size=256&background=${avatarColor}&color=ffffff`;
+
+      setProfileImage({uri: generatedPhoto});
       setModalVisible(false);
     } catch (error) {
       alert('Profil resmi silinirken bir hata oluştu.');
@@ -108,6 +134,12 @@ const Profile = () => {
           <Text style={styles.name}>{username}</Text>
         </View>
       </View>
+
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <NewsCard />
+      </ScrollView>
+  
+      <Plus />
       <Modals
         isVisible={isModalVisible}
         onClose={() => setModalVisible(false)}

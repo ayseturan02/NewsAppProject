@@ -53,7 +53,7 @@ const ExchangeCard = () => {
                   style={styles.image}
                 />
               </View>
-              <Text style={styles.buying}>{exchange.buying} ||</Text>
+              <Text style={styles.buying}>{exchange.buying} |</Text>
             </View>
           </View>
         ))}

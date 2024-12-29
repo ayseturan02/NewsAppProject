@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
+import auth from '@react-native-firebase/auth';
 import {launchImageLibrary} from 'react-native-image-picker';
 import styles from './styles';
 
@@ -31,7 +32,18 @@ const CreateNews = ({navigation}) => {
   const [content, setContent] = useState('');
   const [photoUri, setPhotoUri] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [username, setUsername] = useState('');
   const contentInputRef = useRef(null);
+
+  useEffect(() => {
+    const fetchUsername = () => {
+      const user = auth().currentUser;
+      if (user) {
+        setUsername(user.displayName || 'Anonim');
+      }
+    };
+    fetchUsername();
+  }, []);
 
   const pickImage = () => {
     launchImageLibrary({mediaType: 'photo'}, response => {
@@ -39,9 +51,8 @@ const CreateNews = ({navigation}) => {
         console.log('Image selection cancelled');
       } else if (response.errorMessage) {
         Alert.alert('Hata', response.errorMessage);
-      } else {
-        const uri = response.assets[0].uri;
-        setPhotoUri(uri);
+      } else if (response.assets && response.assets.length > 0) {
+        setPhotoUri(response.assets[0].uri);
       }
     });
   };
@@ -55,23 +66,24 @@ const CreateNews = ({navigation}) => {
   };
 
   const saveToFirestore = async () => {
-    if (!title || !content || !selectedCategory) {
+    if (!title.trim() || !content.trim() || !selectedCategory) {
       Alert.alert('Hata', 'Tüm alanları doldurduğunuzdan emin olun.');
       return;
     }
 
     try {
       const photoUrl = await uploadPhoto(photoUri);
-      await firestore()
-        .collection('News')
-        .add({
-          title,
-          content,
-          category: selectedCategory.name,
-          date: new Date(),
-          photo: photoUrl || null,
-        });
-      Alert.alert('Başarılı', 'Haber başarıyla yayınlandı!');
+      const data = {
+        title: title.trim(),
+        content: content.trim(),
+        category: selectedCategory.name || 'Diğer',
+        date: new Date(),
+        photo: photoUrl || null,
+        AuthorName: username || 'Anonim',
+      };
+
+      await firestore().collection('News').add(data);
+      Alert.alert('Başarılı', 'Haber Moderatör onayından sonra yayınlanacak!');
       navigation.goBack();
     } catch (error) {
       Alert.alert('Hata', 'Haber kaydedilirken bir sorun oluştu.');

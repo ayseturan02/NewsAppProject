@@ -3,6 +3,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 export default styles = StyleSheet.create({
   card: {
+    marginTop: windowHeight * 0.02,
     height: windowWidth * 0.72,
     width: windowWidth * 0.48,
     overflow: 'hidden',

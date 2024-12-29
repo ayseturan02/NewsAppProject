@@ -26,13 +26,12 @@ export default styles = StyleSheet.create({
   },
   username: {
     textAlign: 'center',
-    fontSize: windowWidth * 0.2,
+    fontSize: windowWidth * 0.4,
     color: 'white',
-    fontFamily: 'Alatsi',
   },
   name: {
     color: 'black',
-    fontSize: windowWidth * 0.055,
-    fontFamily: 'Alatsi',
+    fontSize: windowWidth * 0.06,
+    fontFamily: 'Alata',
   },
 });
