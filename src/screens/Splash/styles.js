@@ -13,7 +13,7 @@ export default styles = StyleSheet.create({
     marginTop: windowHeight * -0.06,
   },
   text_position: {marginTop: windowHeight * 0.072, left: windowWidth * 0.02},
-  text_position1: {marginTop: windowHeight * -0.041, left: windowWidth * 0.026},
+  text_position1: {marginTop: windowHeight * -0.037, left: windowWidth * 0.026},
   position: {flexDirection: 'row', marginTop: windowHeight * 0.2},
   text_news: {
     fontSize: windowWidth * 0.137,
@@ -26,10 +26,10 @@ export default styles = StyleSheet.create({
     transform: [{rotate: '-20deg'}],
   },
   image_position: {
-    marginLeft: windowWidth * -0.015,
+    marginLeft: windowWidth * 0.005,
   },
   text: {
-    fontSize: windowWidth * 0.066,
+    fontSize: windowWidth * 0.046,
     fontFamily: 'Bevan',
     color: 'black',
   },

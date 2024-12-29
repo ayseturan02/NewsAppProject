@@ -6,5 +6,5 @@ const green = require('./green.png');
 const Logo2 = require('./Logo2.png');
 const positive = require('./positive.png');
 const negative = require('./negative.png');
-
-export {homepage, world, ayse, blue, green, Logo2, positive, negative};
+const user = require('./user.png');
+export {homepage, world, ayse, blue, green, Logo2, positive, negative, user};

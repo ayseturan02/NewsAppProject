@@ -1,33 +1,38 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 export default styles = StyleSheet.create({
-  image_position: {
-    marginLeft: windowWidth * 0.45,
-    marginTop: windowHeight * -0.06,
+  background: {
+    backgroundColor: '#262825',
+    height: windowWidth * 0.35,
+    width: windowWidth * 1,
+    position: 'absolute',
   },
-  image: {
-    height: windowWidth * 0.65,
-    width: windowWidth * 0.65,
-    marginLeft: windowWidth * 0.3,
-    marginTop: windowHeight * -0.05,
-  },
-  image: {
-    height: windowWidth * 0.85,
-    width: windowWidth * 0.85,
-     borderRadius: windowWidth * 1,
-  },
-  user_name_position: {
-    alignItems: 'flex-end',
-    alignSelf: 'flex-end',
 
-    backgroundColor: 'red',
-    right: windowWidth * 0.04,
-    width: windowWidth * 0.95,
+  container: {flex: 1, backgroundColor: 'white'},
+  profile_position: {alignItems: 'center', marginTop: windowHeight * 0.09},
+  profile_size: {
+    height: windowWidth * 0.35,
+    width: windowWidth * 0.35,
+    borderRadius: (windowWidth * 0.35) / 2,
   },
-  text: {
+  user: {
+    height: windowWidth * 0.35,
+    width: windowWidth * 0.35,
+    backgroundColor: '#B63E39',
+    borderRadius: (windowWidth * 0.35) / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  username: {
+    textAlign: 'center',
+    fontSize: windowWidth * 0.2,
+    color: 'white',
+    fontFamily: 'Alatsi',
+  },
+  name: {
+    color: 'black',
     fontSize: windowWidth * 0.055,
     fontFamily: 'Alatsi',
-    color: '#000000FF',
   },
 });

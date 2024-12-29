@@ -12,7 +12,9 @@ import FlatListHome from './FlatListHome';
 import HomeNews from './HomeNews';
 import DrawerContent from './DrawerContent';
 import Newspaper from './Newspaper';
+import Modals from './Modals';
 export {
+  Modals,
   Newspaper,
   DrawerContent,
   HomeNews,

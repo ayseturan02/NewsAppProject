@@ -16,7 +16,13 @@ const power = require('./power-off.png');
 const live = require('./live.png');
 const notification = require('./notification.png');
 const igloo = require('./igloo.png');
+const arrow = require('./arrow.png');
+const add_image = require('./add_image.png');
+const no_photo = require('./no_photo.png');
 export {
+  no_photo,
+  add_image,
+  arrow,
   igloo,
   power,
   hamburger,

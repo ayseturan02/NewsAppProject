@@ -46,14 +46,14 @@ const Splash = () => {
 
     const timer = setTimeout(() => {
       checkUserStatus();
-    }, 3000);
+    }, 30000);
 
     return () => clearTimeout(timer);
   }, []);
 
   const rotateInterpolate = rotation.interpolate({
     inputRange: [0, 1],
-    outputRange: ['-10deg', '10deg'],
+    outputRange: ['-15deg', '10deg'],
   });
 
   return (
@@ -65,7 +65,7 @@ const Splash = () => {
               <Text style={styles.text_news}>NEWS</Text>
             </View>
             <View style={styles.text_position1}>
-              <Text style={styles.text}>from the world</Text>
+              <Text style={styles.text}>from architetto fazıl</Text>
             </View>
           </View>
           <View style={styles.image_position}>

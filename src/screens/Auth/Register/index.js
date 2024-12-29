@@ -16,24 +16,18 @@ import {TextInputs, Buttons} from './../../../components/index';
 import {RouterNames} from '../../../config';
 import {Logo2} from './../../../assets/images/index';
 import styles from './styles';
-const windowWidth = Dimensions.get('window').width;
+
 const windowHeight = Dimensions.get('window').height;
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const navigation = useNavigation();
 
   const handleRegister = async () => {
-    if (!email || !password || !confirmPassword) {
+    if (!username || !email || !password) {
       Alert.alert('Hata', 'Lütfen tüm alanları doldurun.');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      Alert.alert('Hata', 'Şifreler uyuşmuyor.');
       return;
     }
 
@@ -42,6 +36,12 @@ const Register = () => {
         email,
         password,
       );
+
+      // Kullanıcı profiline kullanıcı adını ekleme
+      await userCredential.user.updateProfile({
+        displayName: username,
+      });
+
       Alert.alert('Başarılı', 'Kayıt işlemi tamamlandı!');
       console.log('User registered:', userCredential.user);
       navigation.navigate(RouterNames.LOGIN);
@@ -76,6 +76,13 @@ const Register = () => {
           </View>
           <View style={styles.inputContainer}>
             <TextInputs
+              name="Username"
+              value={username}
+              placeholder="Kullanıcı adınızı girin"
+              onChangeText={setUsername}
+              style={styles.input}
+            />
+            <TextInputs
               name="Email"
               value={email}
               placeholder="E-posta adresinizi girin"
@@ -87,13 +94,6 @@ const Register = () => {
               value={password}
               placeholder="Şifrenizi girin"
               onChangeText={setPassword}
-              secureTextEntry
-            />
-            <TextInputs
-              name="Confirm Password"
-              value={confirmPassword}
-              placeholder="Şifrenizi tekrar girin"
-              onChangeText={setConfirmPassword}
               secureTextEntry
             />
           </View>
