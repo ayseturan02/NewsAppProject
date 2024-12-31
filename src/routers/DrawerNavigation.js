@@ -44,8 +44,8 @@ const DrawerNavigation = () => {
           right: windowWidth * 0.029,
         },
         drawerLabelStyle: {
-          fontSize: windowWidth * 0.034,
-          fontFamily: 'ABeeZee',
+          fontSize: windowWidth * 0.04,
+          fontFamily: 'Alata',
           marginLeft: windowWidth * 0.05,
         },
         drawerStyle: {

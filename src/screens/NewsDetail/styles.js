@@ -3,11 +3,9 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 export default styles = StyleSheet.create({
   image: {
-    height: windowWidth * 0.75,
+    height: windowWidth * 0.73,
     width: windowWidth,
-    position: 'absolute',
   },
-  position: {marginTop: windowHeight * 0.35, flexDirection: 'row'},
   photo: {
     height: windowWidth * 0.13,
     borderRadius: windowWidth * 1,
@@ -17,8 +15,6 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: windowWidth * 0.02,
   },
-  user_name: {fontSize: windowWidth * 0.06, fontFamily: 'Alata'},
-  date: {width: windowWidth * 0.95, marginLeft: windowWidth * 0.02},
   date_text: {
     color: '#E5E5E5',
     fontFamily: 'SongMyung',
@@ -29,12 +25,11 @@ export default styles = StyleSheet.create({
     fontFamily: 'SongMyung',
     fontSize: windowWidth * 0.08,
   },
-  title_position: {marginTop: windowHeight * -0.02},
   content: {
     width: windowWidth * 0.95,
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: windowHeight * 0.015,
+    marginTop: windowHeight * 0.02,
   },
   content_text: {
     fontFamily: 'Alike',
@@ -42,4 +37,9 @@ export default styles = StyleSheet.create({
     textAlign: 'justify',
     lineHeight: windowHeight * 0.045 * 1.1,
   },
+  screen: {flex: 1, backgroundColor: '#FFFFFF'},
+  position: {flexDirection: 'row', marginTop: windowHeight * 0.015},
+  user_name: {fontSize: windowWidth * 0.06, fontFamily: 'Alata'},
+  title_position: {marginTop: windowHeight * -0.03},
+  date: {width: windowWidth * 0.95, marginLeft: windowWidth * 0.02},
 });

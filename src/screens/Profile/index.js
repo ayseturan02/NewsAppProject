@@ -6,7 +6,7 @@ import {
   Image,
   Dimensions,
   TouchableWithoutFeedback,
-  ScrollView,  // ScrollView'ı ekliyoruz
+  ScrollView, // ScrollView'ı ekliyoruz
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -138,7 +138,7 @@ const Profile = () => {
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <NewsCard />
       </ScrollView>
-  
+
       <Plus />
       <Modals
         isVisible={isModalVisible}

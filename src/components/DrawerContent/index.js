@@ -93,8 +93,8 @@ const DrawerContent = props => {
           />
           <Text
             style={{
-              fontSize: windowWidth * 0.034,
-              fontFamily: 'Bevan',
+              fontSize: windowWidth * 0.04,
+              fontFamily: 'Alatsi',
               color: '#B53D38',
               padding: windowWidth * 0.02,
             }}

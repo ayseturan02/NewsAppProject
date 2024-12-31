@@ -52,14 +52,15 @@ const NewsDetail = ({route}) => {
   const {dish} = route.params;
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+    <SafeAreaView style={styles.screen}>
+      <Back />
       <ScrollView>
         {dish.photo ? (
           <Image source={{uri: dish.photo}} style={styles.image} />
         ) : (
           <View style={{top: windowHeight * -0.06}} />
         )}
-        <Back />
+
         <View style={styles.position}>
           <View style={{marginLeft: windowWidth * 0.02}}>
             {dish.AuthorPhoto ? (

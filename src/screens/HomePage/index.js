@@ -26,9 +26,11 @@ const HomePage = () => {
         </View>
         <FlatListHome />
         <View style={{flexDirection: 'row', marginTop: windowHeight * 0.03}}>
-          {/*  <ExchangeCard />  */}
+          <ExchangeCard />
         </View>
-        {/*  <Newspaper /> */}
+        <View style={{flexDirection: 'row', marginTop: windowHeight * 0.03}}>
+          <Newspaper />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
