@@ -9,8 +9,10 @@ import Register from './Auth/Register';
 import CreateNews from './CreateNews';
 import Category from './Category';
 import ModeratorDashboard from './ModeratorDashboard';
+import OtherUser from './OtherUser';
 
 export {
+  OtherUser,
   ModeratorDashboard,
   Category,
   CreateNews,

@@ -27,9 +27,8 @@ const Newspaper = () => {
         console.log('API Yanıtı:', response.data);
 
         if (response.data && response.data.front_page) {
-          // İlk üç haberi al
-          const limitedNews = response.data.front_page.slice(0, 3);
-          setNewsData(limitedNews);
+          // Gelen veriyi mevcut listeye ekleyerek güncelle
+          setNewsData(prevNews => [...prevNews, response.data.front_page]);
         } else {
           console.log('Beklenen veri yapısı bulunamadı:', response.data);
         }

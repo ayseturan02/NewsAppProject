@@ -10,6 +10,7 @@ import {
   HomePage,
   CreateNews,
   ModeratorDashboard,
+  OtherUser,
 } from './../screens/index';
 import BottomNavigation from './BottomNavigation';
 import DrawerNavigation from './DrawerNavigation';
@@ -74,6 +75,13 @@ function Root() {
       <Stack.Screen
         name={RouterNames.MODERATOR_DASHBOARD}
         component={ModeratorDashboard}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={RouterNames.OTHER_USER}
+        component={OtherUser}
         options={{
           headerShown: false,
         }}

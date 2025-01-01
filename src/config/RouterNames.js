@@ -11,4 +11,5 @@ export default RouterNames = {
   CREATE_NEWS: 'CreateNews',
   CATEGORY: 'Category',
   MODERATOR_DASHBOARD: 'ModeratorDashboard',
+  OTHER_USER: 'OtherUser',
 };

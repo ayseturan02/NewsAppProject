@@ -16,8 +16,8 @@ export default styles = StyleSheet.create({
     marginTop: windowHeight * 0.02,
   },
   icon: {
-    width: windowWidth * 0.07,
-    height: windowWidth * 0.07,
+    width: windowWidth * 0.06,
+    height: windowWidth * 0.06,
   },
   position: {flexDirection: 'row', margin: windowWidth * 0.02},
   modalContainer: {

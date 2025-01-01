@@ -1,14 +1,25 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, FlatList, TouchableOpacity, Alert, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Alert,
+  Image,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import {RouterNames} from '../../config';
 
 const ModeratorDashboard = () => {
   const [newsList, setNewsList] = useState([]);
   const navigation = useNavigation();
-
-  // Verileri çekme
   useEffect(() => {
     const fetchNews = firestore()
       .collection('News')
@@ -20,10 +31,9 @@ const ModeratorDashboard = () => {
         setNewsList(news);
       });
 
-    return () => fetchNews(); // Unsubscribe işlemi
+    return () => fetchNews();
   }, []);
 
-  // Silme fonksiyonu
   const deleteNews = id => {
     firestore()
       .collection('News')
@@ -37,32 +47,28 @@ const ModeratorDashboard = () => {
       });
   };
 
-  // Yayında bırakma fonksiyonu
   const keepPublished = () => {
     Alert.alert('Bilgi', 'Haber yayında bırakıldı.');
   };
 
-  // Çıkış yapma fonksiyonu
-  const logout = () => {
-    auth()
-      .signOut()
-      .then(() => {
-        navigation.navigate('Login'); // Login sayfasına yönlendirme
-      })
-      .catch(error => {
-        Alert.alert('Hata', `Çıkış yapılamadı: ${error.message}`);
-      });
-  };
-
   const renderItem = ({item}) => (
     <View style={styles.card}>
+      <TouchableWithoutFeedback
+        onPress={() =>
+          navigation.navigate(RouterNames.OTHER_USER, {
+            authorName: item.AuthorName,
+            news: newsList.filter(news => news.AuthorName === item.AuthorName),
+          })
+        }>
+        <Text style={{fontSize: windowWidth * 0.05, fontFamily: 'Alatsi'}}>
+          {item.AuthorName}-profili görüntüle
+        </Text>
+      </TouchableWithoutFeedback>
       <Text style={styles.title}>{item.title}</Text>
-      
+
       <Text style={styles.content}>{item.content}</Text>
-      
-      {item.photo && (
-        <Image source={{uri: item.photo}} style={styles.image} />
-      )}
+
+      {item.photo && <Image source={{uri: item.photo}} style={styles.image} />}
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -81,9 +87,20 @@ const ModeratorDashboard = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-        <Text style={styles.logoutText}>Çıkış Yap</Text>
-      </TouchableOpacity>
+      <View
+        style={{
+          marginTop: windowHeight * 0.03,
+          marginLeft: windowWidth * 0.03,
+        }}>
+        <Text
+          style={{
+            fontSize: windowWidth * 0.15,
+            fontFamily: 'ZillaSlabHighlight_Bold',
+            color: '#262825',
+          }}>
+          Moderatör Paneli
+        </Text>
+      </View>
       <FlatList
         data={newsList}
         keyExtractor={item => item.id}

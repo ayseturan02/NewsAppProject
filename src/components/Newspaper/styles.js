@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
   card: {
     marginTop: windowHeight * 0.02,
     height: windowWidth * 0.62,
-    width: windowWidth * 0.4,
+    width: windowWidth * 0.37,
     overflow: 'hidden',
     backgroundColor: 'white',
     borderRadius: windowWidth * 0.01,
@@ -20,7 +20,7 @@ export default styles = StyleSheet.create({
     elevation: 5,
   },
   image: {
-    height: windowWidth * 0.5,
+    height: windowWidth * 0.48,
     width: windowWidth * 0.34,
     resizeMode: 'cover',
   },

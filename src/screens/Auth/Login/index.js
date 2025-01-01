@@ -37,18 +37,16 @@ const Login = () => {
         password,
       );
       const userId = userCredential.user.uid;
-
+  
       console.log('Giriş başarılı!');
-      if (userId === 'uSqIjVGiA7UXOLScINS2nBeinb33') {
-        console.log('Moderatör girişi yapıldı.');
-        navigation.replace(RouterNames.MODERATOR_DASHBOARD);
-      } else {
-        console.log('Normal kullanıcı girişi yapıldı.');
-        if (isChecked) {
-          await AsyncStorage.setItem('user_token', 'logged_in');
-        }
-        navigation.replace('Drawer');
+      const isModerator = userId === 'uSqIjVGiA7UXOLScINS2nBeinb33';
+      if (isChecked) {
+        await AsyncStorage.setItem('user_token', 'logged_in');
       }
+      await AsyncStorage.setItem('is_moderator', JSON.stringify(isModerator));
+  
+      console.log(isModerator ? 'Moderatör girişi yapıldı.' : 'Normal kullanıcı girişi yapıldı.');
+      navigation.replace('Drawer');
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         Alert.alert('Hata', 'Kullanıcı bulunamadı.');
@@ -60,6 +58,7 @@ const Login = () => {
       console.error(error);
     }
   };
+  
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
