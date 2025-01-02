@@ -13,4 +13,11 @@ export default styles = StyleSheet.create({
     height: windowWidth * 0.4,
     width: windowWidth * 1,
   },
+  card: {
+    height: windowWidth * 0.12,
+    width: windowWidth * 0.9,
+    padding: windowWidth * 0.012,
+  },
+  text: {fontFamily: 'Alata', fontSize: windowWidth * 0.035},
+  top: {marginTop: windowHeight * 0.02},
 });

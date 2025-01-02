@@ -13,6 +13,5 @@ export default styles = StyleSheet.create({
   image: {
     height: windowWidth * 0.045,
     width: windowWidth * 0.045,
-    opacity: 0.5,
   },
 });

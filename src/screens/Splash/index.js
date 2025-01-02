@@ -46,7 +46,7 @@ const Splash = () => {
 
     const timer = setTimeout(() => {
       checkUserStatus();
-    }, 30000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

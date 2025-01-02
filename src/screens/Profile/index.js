@@ -6,7 +6,7 @@ import {
   Image,
   Dimensions,
   TouchableWithoutFeedback,
-  ScrollView, // ScrollView'ı ekliyoruz
+  ScrollView,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';

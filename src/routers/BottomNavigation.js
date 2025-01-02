@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RouterNames} from './../config/index';
+import {Image, View, Dimensions} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {people, live, home, notification} from '../assets/icons/index';
 import {
   HomePage,
   Profile,
@@ -8,10 +11,6 @@ import {
   LiveChat,
   ModeratorDashboard,
 } from './../screens/index';
-import {Image, View, Dimensions} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {people, live, home, notification} from '../assets/icons/index';
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 

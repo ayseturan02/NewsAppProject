@@ -15,11 +15,11 @@ export default styles = StyleSheet.create({
   view: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: windowWidth * 0.04,
+    marginTop: windowWidth * 0.03,
   },
   remember: {
-    height: windowWidth * 0.05,
-    width: windowWidth * 0.05,
+    height: windowWidth * 0.04,
+    width: windowWidth * 0.04,
     borderRadius: windowWidth * 0.005,
     borderWidth: windowWidth * 0.004,
     borderColor: '#898989',
@@ -27,13 +27,12 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
   },
   tic: {
-    height: windowWidth * 0.02,
-    width: windowWidth * 0.02,
     backgroundColor: 'white',
   },
   rememberI: {
-    marginLeft: windowWidth * 0.02,
-    fontSize: windowWidth * 0.04,
+    marginLeft: windowWidth * 0.012,
+    fontFamily: 'Alata',
+    fontSize: windowWidth * 0.036,
     color: '#282D28',
   },
   haveAccount: {

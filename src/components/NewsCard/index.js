@@ -25,10 +25,10 @@ const NewsCard = () => {
         return;
       }
 
-      const username = currentUser.displayName; // Kullanıcı adını al
+      const username = currentUser.displayName;
       const querySnapshot = await firestore()
         .collection('News')
-        .where('AuthorName', '==', username) // authorname ile filtreleme
+        .where('AuthorName', '==', username)
         .get();
 
       const fetchedDishes = querySnapshot.docs.map(doc => doc.data());
@@ -59,26 +59,29 @@ const NewsCard = () => {
         <ScrollView>
           {dishes.map((dish, index) => (
             <View key={index} style={styles.container}>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll_view}>
-              <TouchableWithoutFeedback
-                onPress={() =>
-                  navigation.navigate(RouterNames.NEWS_DETAIL, {
-                    dish: dish,
-                  })
-                }>
-                <View style={styles.text_view}>
-                  <Text style={styles.title}>{dish.title}</Text>
-                  <View style={styles.content_position}>
-                    <Text style={styles.content} numberOfLines={3}>
-                      {dish.content}
-                    </Text>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.scroll_view}>
+                <TouchableWithoutFeedback
+                  onPress={() =>
+                    navigation.navigate(RouterNames.NEWS_DETAIL, {
+                      dish: dish,
+                    })
+                  }>
+                  <View style={styles.text_view}>
+                    <Text style={styles.title}>{dish.title}</Text>
+                    <View style={styles.content_position}>
+                      <Text style={styles.content} numberOfLines={3}>
+                        {dish.content}
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              </TouchableWithoutFeedback>
-              {dish.photo && (
-                <Image source={{uri: dish.photo}} style={styles.image} />
-              )}
-          </ScrollView>
+                </TouchableWithoutFeedback>
+                {dish.photo && (
+                  <Image source={{uri: dish.photo}} style={styles.image} />
+                )}
+              </ScrollView>
             </View>
           ))}
         </ScrollView>

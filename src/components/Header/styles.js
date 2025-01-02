@@ -1,12 +1,10 @@
 import {StyleSheet, Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
 export default StyleSheet.create({
   view: {
     height: windowWidth * 0.12,
     width: windowWidth,
-    backgroundColor: '#262825',
   },
   row: {
     flexDirection: 'row',
@@ -16,7 +14,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   text: {
-    color: 'white',
+    color: 'black',
     fontSize: windowWidth * 0.05,
     fontFamily: 'Alatsi',
   },

@@ -1,59 +1,94 @@
-import React from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  Text,
+  View,
+  FlatList,
+  SafeAreaView,
+  Image,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import {Back} from '../../components';
+import {RouterNames} from '../../config';
+import styles from './styles';
+const getUserAvatarColor = username => {
+  const colors = ['B53D38', '9E2A2F', 'A34F39', '8B2F2B', 'C14A4A'];
+  const hash = username
+    .split('')
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return colors[hash % colors.length];
+};
 
-const OtherUser = ({route}) => {
-  const {authorName, news} = route.params;
+const OtherUser = ({route, navigation}) => {
+  const {authorName, news, authorPhoto} = route.params;
+  const [profileImage, setProfileImage] = useState(null);
+
+  useEffect(() => {
+    if (authorPhoto) {
+      setProfileImage({uri: authorPhoto});
+    } else {
+      const avatarColor = getUserAvatarColor(authorName || 'Kullanıcı');
+      const generatedPhoto = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+        authorName || 'Kullanıcı',
+      )}&size=256&background=${avatarColor}&color=ffffff`;
+
+      setProfileImage({uri: generatedPhoto});
+    }
+  }, [authorName, authorPhoto]);
 
   const renderNews = ({item}) => (
-    <View style={styles.newsCard}>
-      <Text style={styles.newsTitle}>{item.title}</Text>
-      <Text style={styles.newsContent}>{item.content}</Text>
+    <View style={styles.container}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.scroll_view}>
+        <TouchableWithoutFeedback
+          onPress={() =>
+            navigation.navigate(RouterNames.NEWS_DETAIL, {
+              dish: {
+                title: item.title,
+                content: item.content,
+                photo: item.photo,
+                AuthorName: authorName,
+                AuthorPhoto: authorPhoto,
+                date: item.date,
+              },
+            })
+          }>
+          <View style={styles.text_view}>
+            <Text style={styles.title}>{item.title}</Text>
+            <View style={styles.content_position}>
+              <Text style={styles.content} numberOfLines={3}>
+                {item.content}
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+        {item.photo && (
+          <Image source={{uri: item.photo}} style={styles.image} />
+        )}
+      </ScrollView>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.authorName}>{authorName}</Text>
+    <SafeAreaView style={{height: '100%', backgroundColor: 'white'}}>
+      <Back />
+      <View style={styles.headerContainer}>
+        {profileImage ? (
+          <Image source={profileImage} style={styles.authorPhoto} />
+        ) : (
+          <Text>Profil resmi yükleniyor...</Text>
+        )}
+        <Text style={styles.authorName}>{authorName}</Text>
+      </View>
       <FlatList
         data={news}
         keyExtractor={item => item.id}
         renderItem={renderNews}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default OtherUser;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  authorName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  newsCard: {
-    backgroundColor: '#f9f9f9',
-    padding: 15,
-    marginBottom: 10,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  newsTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  newsContent: {
-    fontSize: 14,
-    color: '#555',
-  },
-});

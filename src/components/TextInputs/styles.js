@@ -2,6 +2,9 @@ import {StyleSheet, Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 export default styles = StyleSheet.create({
+  input_container: {
+    marginTop: windowHeight * 0.02,
+  },
   input: {
     height: windowWidth * 0.11,
     width: windowWidth * 0.94,

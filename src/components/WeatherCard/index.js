@@ -36,14 +36,12 @@ const WeatherCard = () => {
     );
   }
   return (
-  
-      <View style={styles.view}>
-        <View style={styles.text_position}>
-          <Text style={styles.text2}>Elazig /{weather.degree}°C</Text>
-          <Text style={styles.text2}>{weather.description}</Text>
-        </View>
+    <View style={styles.view}>
+      <View style={styles.text_position}>
+        <Text style={styles.text2}>Elazig /{weather.degree}°C</Text>
+        <Text style={styles.text2}>{weather.description}</Text>
       </View>
-
+    </View>
   );
 };
 

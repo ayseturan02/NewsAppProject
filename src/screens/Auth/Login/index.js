@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Logo2} from './../../../assets/images/index';
 import styles from './styles';
 import {RouterNames} from '../../../config';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -25,6 +26,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+  const [showPassword, setShowPassword] = useState('false');
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -37,15 +39,19 @@ const Login = () => {
         password,
       );
       const userId = userCredential.user.uid;
-  
+
       console.log('Giriş başarılı!');
       const isModerator = userId === 'uSqIjVGiA7UXOLScINS2nBeinb33';
       if (isChecked) {
         await AsyncStorage.setItem('user_token', 'logged_in');
       }
       await AsyncStorage.setItem('is_moderator', JSON.stringify(isModerator));
-  
-      console.log(isModerator ? 'Moderatör girişi yapıldı.' : 'Normal kullanıcı girişi yapıldı.');
+
+      console.log(
+        isModerator
+          ? 'Moderatör girişi yapıldı.'
+          : 'Normal kullanıcı girişi yapıldı.',
+      );
       navigation.replace('Drawer');
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
@@ -58,7 +64,6 @@ const Login = () => {
       console.error(error);
     }
   };
-  
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -84,7 +89,7 @@ const Login = () => {
             <TextInputs
               name="Password"
               placeholder="Şifre giriniz"
-              secureTextEntry
+              secureTextEntry={!showPassword}
               onChangeText={text => setPassword(text)}
             />
             <View style={styles.view}>
@@ -92,11 +97,19 @@ const Login = () => {
                 onPress={() => setIsChecked(!isChecked)}
                 style={[
                   styles.remember,
-                  {backgroundColor: isChecked ? '#282D28' : 'white'},
+                  {backgroundColor: isChecked ? '#B53D38' : 'white'},
                 ]}>
                 {isChecked && <View style={styles.tic} />}
               </TouchableOpacity>
               <Text style={styles.rememberI}>Beni hatırla</Text>
+              <View style={{alignItems: 'flex-end', width: windowWidth * 0.69}}>
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}>
+                  <Text style={styles.rememberI}>
+                    {!showPassword ? 'Şifreyi gizle' : 'Şifreyi görüntüle'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
             <Buttons name="Login now" onPress={handleLogin} />
             <View style={styles.account_text}>
