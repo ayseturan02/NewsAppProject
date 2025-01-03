@@ -14,6 +14,7 @@ import {
   atom,
   settings,
 } from './../assets/icons/index';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -55,6 +56,8 @@ const DrawerNavigation = () => {
         },
       }}
       drawerContent={props => <DrawerContent {...props} />}>
+
+      {/* Anasayfa */}
       <Drawer.Screen
         name="Anasayfa"
         component={BottomNavigation}
@@ -68,13 +71,18 @@ const DrawerNavigation = () => {
           ),
         }}
       />
+
+      {/* Kategoriler */}
       {categories.map(category => (
         <Drawer.Screen
           key={category.id}
           name={category.name}
           component={Category}
-          initialParams={{categoryId: category.id}}
-          options={({focused}) => ({
+          initialParams={{
+            categoryName: category.name,
+            categoryId: category.id, // Kategori ID'si ekleniyor
+          }}
+          options={{
             drawerIcon: ({focused}) => (
               <Image
                 source={category.icon}
@@ -86,9 +94,11 @@ const DrawerNavigation = () => {
                 resizeMode="contain"
               />
             ),
-          })}
+          }}
         />
       ))}
+
+      {/* Ayarlar */}
       <Drawer.Screen
         name="Ayarlar"
         component={Category}

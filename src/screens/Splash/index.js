@@ -65,7 +65,7 @@ const Splash = () => {
               <Text style={styles.text_news}>NEWS</Text>
             </View>
             <View style={styles.text_position1}>
-              <Text style={styles.text}>from architetto fazıl</Text>
+              <Text style={styles.text}>from the world</Text>
             </View>
           </View>
           <View style={styles.image_position}>

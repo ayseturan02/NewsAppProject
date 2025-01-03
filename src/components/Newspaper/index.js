@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import styles from './styles';
 
@@ -27,8 +27,7 @@ const Newspaper = () => {
         console.log('API Yanıtı:', response.data);
 
         if (response.data && response.data.front_page) {
-          // Gelen veriyi mevcut listeye ekleyerek güncelle
-          setNewsData(prevNews => [...prevNews, response.data.front_page]);
+          setNewsData(response.data.front_page);
         } else {
           console.log('Beklenen veri yapısı bulunamadı:', response.data);
         }
@@ -42,6 +41,13 @@ const Newspaper = () => {
     fetchNews();
   }, []);
 
+  const moveItemToTop = (item) => {
+    setNewsData((prevNews) => {
+      const filteredNews = prevNews.filter((news) => news !== item);
+      return [item, ...filteredNews];
+    });
+  };
+
   if (loading) {
     return (
       <View style={styles.centered}>
@@ -51,18 +57,20 @@ const Newspaper = () => {
   }
 
   const renderItem = ({item}) => (
-    <View style={styles.card}>
-      {item.image ? (
-        <View style={styles.position}>
-          <Image source={{uri: item.image}} style={styles.image} />
+    <TouchableOpacity onPress={() => moveItemToTop(item)}>
+      <View style={styles.card}>
+        {item.image ? (
+          <View style={styles.position}>
+            <Image source={{uri: item.image}} style={styles.image} />
+          </View>
+        ) : (
+          <Text>Görsel mevcut değil</Text>
+        )}
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{item.name || 'Başlık mevcut değil'}</Text>
         </View>
-      ) : (
-        <Text>Görsel mevcut değil</Text>
-      )}
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.name || 'Başlık mevcut değil'}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -70,8 +78,8 @@ const Newspaper = () => {
       data={newsData}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
+      horizontal={false} 
+      showsVerticalScrollIndicator={false}
       ListEmptyComponent={<Text>Veri mevcut değil</Text>}
     />
   );

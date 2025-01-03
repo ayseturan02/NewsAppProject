@@ -1,15 +1,28 @@
 import {StyleSheet, Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 export default styles = StyleSheet.create({
   headerContainer: {
-    padding: 10,
     alignItems: 'center',
-    backgroundColor: '#fff',
+    marginTop: windowHeight * -0.085,
   },
   authorPhoto: {
-    width: windowWidth * 0.3,
+    width: windowWidth * 0.35,
+    height: windowWidth * 0.35,
+    borderRadius: windowWidth * 1,
+  },
+  w: {
+    height: windowWidth * 0.38,
+    width: windowWidth * 0.38,
+    marginTop: windowHeight * 0.06,
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    borderRadius: windowWidth * 1,
+  },
+  view: {
+    backgroundColor: '#262825',
     height: windowWidth * 0.3,
-    borderRadius: (windowWidth * 0.3) / 2,
+    width: windowWidth * 1,
   },
   authorName: {
     fontSize: windowWidth * 0.1,

@@ -26,10 +26,10 @@ export default styles = StyleSheet.create({
     transform: [{rotate: '-20deg'}],
   },
   image_position: {
-    marginLeft: windowWidth * 0.005,
+    marginLeft: windowWidth * -0.022,
   },
   text: {
-    fontSize: windowWidth * 0.046,
+    fontSize: windowWidth * 0.066,
     fontFamily: 'Bevan',
     color: 'black',
   },

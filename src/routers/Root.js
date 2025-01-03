@@ -23,15 +23,15 @@ function Root() {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Drawer" component={DrawerNavigation} />
       <Stack.Screen
-        name={RouterNames.LOGIN}
-        component={Login}
+        name={RouterNames.REGISTER}
+        component={Register}
         options={{
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name={RouterNames.REGISTER}
-        component={Register}
+            <Stack.Screen
+        name={RouterNames.LOGIN}
+        component={Login}
         options={{
           headerShown: false,
         }}

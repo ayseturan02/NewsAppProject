@@ -4,13 +4,19 @@ const windowHeight = Dimensions.get('window').height;
 export default styles = StyleSheet.create({
   background: {
     backgroundColor: '#262825',
-    height: windowWidth * 0.35,
+    height: windowWidth * 0.3,
     width: windowWidth * 1,
     position: 'absolute',
   },
+  white: {
+    height: windowWidth * 0.38,
+    width: windowWidth * 0.38,
+    backgroundColor: 'white',
+    borderRadius: windowWidth * 1,
+  },
 
   container: {flex: 1, backgroundColor: 'white'},
-  profile_position: {alignItems: 'center', marginTop: windowHeight * 0.09},
+  profile_position: {alignItems: 'center', marginTop: windowHeight * 0.05},
   profile_size: {
     height: windowWidth * 0.35,
     width: windowWidth * 0.35,

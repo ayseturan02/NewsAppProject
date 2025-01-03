@@ -5,7 +5,7 @@ const get = urlOptions => {
     headers: {
       'content-type': 'application/json',
 
-      authorization: 'apikey 1alUjYSAxPxQnNvPK7l6LH:1eXIVQu42BeRp1xSmo1Kcm',
+      authorization: 'apikey 0JVCGfN0Z8Ukvf0joVrzFs:2nItYdjnx9pHIrZbKglgtF',
     },
   })
     .then(response => {
@@ -24,7 +24,7 @@ const post = (urlOption, body) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      authorization: 'apikey 1alUjYSAxPxQnNvPK7l6LH:1eXIVQu42BeRp1xSmo1Kcm',
+      authorization: 'apikey 0JVCGfN0Z8Ukvf0joVrzFs:2nItYdjnx9pHIrZbKglgtF',
     },
     body: JSON.stringify(body),
   })

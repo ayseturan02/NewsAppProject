@@ -24,10 +24,8 @@ const Profile = () => {
   const [profileImage, setProfileImage] = useState(userImage);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
-
-  // Kullanıcıya özel renk seçici
   const getUserAvatarColor = username => {
-    const colors = ['B53D38', '9E2A2F', 'A34F39', '8B2F2B', 'C14A4A'];
+    const colors = ['FF5733', 'FF6F61', 'FF8D1A', 'FFB03B', 'FFEB3B'];
     const hash = username
       .split('')
       .reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -119,17 +117,22 @@ const Profile = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.background}></View>
       <View style={styles.profile_position}>
-        <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-          {profileImage.uri ? (
-            <Image source={profileImage} style={styles.profile_size} />
-          ) : (
-            <View style={styles.user}>
-              <Text style={styles.username}>
-                {username.charAt(0).toUpperCase() || '?'}
-              </Text>
-            </View>
-          )}
-        </TouchableWithoutFeedback>
+        <View style={styles.white}>
+          <View style={{margin: windowWidth * 0.015}}>
+            <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+              {profileImage.uri ? (
+                <Image source={profileImage} style={styles.profile_size} />
+              ) : (
+                <View style={styles.user}>
+                  <Text style={styles.username}>
+                    {username.charAt(0).toUpperCase() || '?'}
+                  </Text>
+                </View>
+              )}
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+
         <View style={{alignSelf: 'center'}}>
           <Text style={styles.name}>{username}</Text>
         </View>

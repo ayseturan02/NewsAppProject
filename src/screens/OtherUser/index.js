@@ -12,7 +12,7 @@ import {Back} from '../../components';
 import {RouterNames} from '../../config';
 import styles from './styles';
 const getUserAvatarColor = username => {
-  const colors = ['B53D38', '9E2A2F', 'A34F39', '8B2F2B', 'C14A4A'];
+  const colors = ['FF5733', 'FF6F61', 'FF8D1A', 'FFB03B', 'FFEB3B'];
   const hash = username
     .split('')
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -74,6 +74,9 @@ const OtherUser = ({route, navigation}) => {
   return (
     <SafeAreaView style={{height: '100%', backgroundColor: 'white'}}>
       <Back />
+      <View style={styles.view}>
+        <View style={styles.w}></View>
+      </View>
       <View style={styles.headerContainer}>
         {profileImage ? (
           <Image source={profileImage} style={styles.authorPhoto} />

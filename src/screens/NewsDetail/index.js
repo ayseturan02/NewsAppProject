@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   Image,
@@ -8,11 +8,12 @@ import {
   ScrollView,
 } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
+import {incrementViewCount} from './../../service/newsService';
 const windowHeight = Dimensions.get('window').height;
 import styles from './styles';
 import {Back} from './../../components/index';
 const getUserAvatarColor = username => {
-  const colors = ['B53D38', '9E2A2F', 'A34F39', '8B2F2B', 'C14A4A'];
+  const colors = ['FF5733', 'FF6F61', 'FF8D1A', 'FFB03B', 'FFEB3B'];
   const hash = username
     .split('')
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -50,6 +51,13 @@ const generateProfilePhoto = name => {
 
 const NewsDetail = ({route}) => {
   const {dish} = route.params;
+  useEffect(() => {
+    if (dish && dish.id) {
+      incrementViewCount(dish.id); 
+    } else {
+      console.log('No dish ID found');
+    }
+  }, [route.params]);
 
   return (
     <SafeAreaView style={styles.screen}>

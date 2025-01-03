@@ -10,6 +10,7 @@ export default styles = StyleSheet.create({
     borderWidth: windowWidth * 0.001,
     borderColor: '#D4D6D7FF',
   },
+  top: {alignItems: 'center', marginTop: windowHeight * 0.02},
   image_position: {marginTop: windowHeight * 0.01},
   view: {
     marginRight: windowWidth * 0.02,

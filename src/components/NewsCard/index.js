@@ -1,3 +1,4 @@
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -5,7 +6,6 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
@@ -31,7 +31,10 @@ const NewsCard = () => {
         .where('AuthorName', '==', username)
         .get();
 
-      const fetchedDishes = querySnapshot.docs.map(doc => doc.data());
+      const fetchedDishes = querySnapshot.docs.map(doc => ({
+        id: doc.id, // Belge ID'sini dahil et
+        ...doc.data(),
+      }));
       setDishes(fetchedDishes);
     } catch (error) {
       console.error('Veri alınırken hata oluştu:', error);
@@ -66,7 +69,7 @@ const NewsCard = () => {
                 <TouchableWithoutFeedback
                   onPress={() =>
                     navigation.navigate(RouterNames.NEWS_DETAIL, {
-                      dish: dish,
+                      dish: dish, // Tüm dish nesnesini id ile birlikte aktar
                     })
                   }>
                   <View style={styles.text_view}>

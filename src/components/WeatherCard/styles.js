@@ -10,14 +10,16 @@ export default styles = StyleSheet.create({
     width: windowWidth * 0.3,
     backgroundColor: '#F8F8F8',
     borderRadius: windowWidth * 0.01,
+
     borderWidth: windowWidth * 0.001,
     borderColor: '#D4D6D7FF',
   },
   text2: {
-    fontSize: windowWidth * 0.036,
+    fontSize: windowWidth * 0.033,
     fontFamily: 'Alata',
     color: '#363535',
   },
+  
 
   text_position: {
     marginLeft: windowWidth * 0.03,

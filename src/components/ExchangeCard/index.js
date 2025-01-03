@@ -40,7 +40,7 @@ const ExchangeCard = () => {
   }
 
   return (
-    <View style={{alignItems: 'center'}}>
+    <View style={styles.top}>
       <View style={[styles.container, {flexDirection: 'row'}]}>
         {exchangeData.map((exchange, index) => (
           <View key={index} style={styles.view}>

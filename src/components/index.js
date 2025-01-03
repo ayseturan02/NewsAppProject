@@ -13,7 +13,11 @@ import HomeNews from './HomeNews';
 import DrawerContent from './DrawerContent';
 import Newspaper from './Newspaper';
 import Modals from './Modals';
+import PopularNews from './PopularNews';
+import AuthorList from './AuthorList';
 export {
+  AuthorList,
+  PopularNews,
   Modals,
   Newspaper,
   DrawerContent,
